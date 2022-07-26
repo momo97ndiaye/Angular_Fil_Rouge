@@ -1,14 +1,29 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { ListProductsComponent } from './list-products/list-products.component';
+import { ProductDetailComponent } from './list-products/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListProductsComponent,
+    ProductDetailComponent,
+
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+    { path:'',component:ListProductsComponent},
+    { path:'catalogue',component:ListProductsComponent},
+    { path:'products/:id',component:ProductDetailComponent},
+    { path:'products',component:ListProductsComponent},
+    { path:'**',redirectTo:'catalogue',pathMatch:'full'}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
