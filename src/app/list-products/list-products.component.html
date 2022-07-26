@@ -21,7 +21,9 @@
             </div>
         </header>
         <!-- Section-->
+
         <section class="py-5 d-flex flex-wrap col-md-12">
+            <div class="menus col-md-12 bg-dark">Burgers</div>
                     <div class="container col-md-4 mb-2 " *ngFor="let burger of burgers">
                         <div class="card h-100 col-md-12">
                             <!-- Product image-->
@@ -38,7 +40,35 @@
                             <!-- Product actions-->
                            <div class="card-foot d-flex flex-fill">
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Voir détails</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',burger.id]">Voir détails</a></div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a></div>
+                            </div>
+                           </div>
+                    </div>
+                        </div>
+        </section>
+
+        <section class="py-5 d-flex flex-wrap col-md-12">
+            <div class="menus col-md-12 bg-dark">Menus</div>
+                    <div class="container col-md-4 mb-2 " *ngFor="let menu of menus">
+                        <div class="card h-100 col-md-12">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{menu.image}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{menu.nom}}</h5>
+                                    <!-- Product price-->
+                                    FCFA {{menu.prix}}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                           <div class="card-foot d-flex flex-fill">
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',menu.id]">Voir détails</a></div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a></div>

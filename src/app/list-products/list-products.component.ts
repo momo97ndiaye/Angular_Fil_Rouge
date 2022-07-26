@@ -2,8 +2,6 @@ import { CatalogueService } from './catalogue.service';
 import { Component, OnInit } from '@angular/core';
 import { IMenu } from './Menu';
 import { IBurger } from './Burger';
-import { Observable, Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -15,17 +13,24 @@ export class ListProductsComponent implements OnInit {
 
   public menus: IMenu[]=[]
   public burgers: IBurger[]=[]
+  public catalogue:any[] =[]
   ngOnInit(): void {
-    this.listproducts.getMenu().subscribe({ 
-      next : (item:IBurger)=>{
-        this.burgers.push(item);
+    this.listproducts.getBurger().subscribe({ 
+      next : (d:IBurger)=>{
+          this.burgers.push(d);
       },
       error: (error)=> console.log(` erreur ${error}`),
-      complete: ()=> console.log('complet')
+      complete: ()=> console.log('complet 1')
     
   });
-/*     this.subscribe1 = this.listproducts.getBurger().subscribe(console.log)
- */
-  }
 
+  this.listproducts.getMenu().subscribe({ 
+    next : (item:IMenu)=>{
+      this.menus.push(item);
+    },
+    error: (error)=> console.log(` erreur ${error}`),
+    complete: ()=> console.log('complet 2')
+  })
+
+}
 }

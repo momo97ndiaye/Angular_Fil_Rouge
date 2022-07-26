@@ -18,8 +18,8 @@ import { ProductDetailComponent } from './list-products/product-detail/product-d
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-    { path:'',component:ListProductsComponent},
     { path:'catalogue',component:ListProductsComponent},
+    { path:'',redirectTo:'catalogue',pathMatch:'full'},
     { path:'products/:id',component:ProductDetailComponent},
     { path:'products',component:ListProductsComponent},
     { path:'**',redirectTo:'catalogue',pathMatch:'full'}

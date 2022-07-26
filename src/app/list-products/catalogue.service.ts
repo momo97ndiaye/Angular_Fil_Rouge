@@ -1,3 +1,4 @@
+import { IProduit } from './Produit';
 import { IMenu } from './Menu';
 import { IBurger } from './Burger';
 import { Injectable} from '@angular/core';
@@ -10,7 +11,9 @@ export class CatalogueService {
 
   constructor() { }
 
- 
+  
+
+
     private burger:Observable<IBurger>=from([
       {
         id:1,
@@ -59,7 +62,7 @@ export class CatalogueService {
       ] 
     );
 
-    private menu:Observable<IBurger>=from([
+    private menu:Observable<IMenu>=from([
       {
         id:1,
         nom:'Burger simple',
@@ -106,10 +109,17 @@ export class CatalogueService {
       }
       ] 
     );
+
+    private catalogue:Observable<IProduit>=from([
+
+    ]);   
     getBurger():Observable<IBurger>{
       return this.burger
     }
     getMenu():Observable<IMenu>{
       return this.menu
+    }
+    getCatalogue():Observable<IProduit>{
+      return this.catalogue
     }
 }

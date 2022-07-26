@@ -5,3 +5,12 @@
     display: flex;
     flex-direction: row;
 }
+.menus{
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: bisque;
+    margin-bottom: 20px;
+}
