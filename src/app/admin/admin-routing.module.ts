@@ -1,3 +1,4 @@
+import { AdminComponent } from './admin.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { MenuComponent } from './produits/menu/menu.component';
 import { ZoneComponent } from './zone/zone.component';
@@ -6,10 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommandesComponent } from './commandes/commandes.component';
 import { LivraisonsComponent } from './livraisons/livraisons.component';
 import { LivreurComponent } from './livraisons/livreur/livreur.component';
-import { UnecommandeComponent } from './unecommande/unecommande.component';
 
 const routes: Routes = [
-  { path: 'allcommandes',component: UnecommandeComponent,
+  { path: 'allcommandes',component: AdminComponent,
       children: [
         { path: 'zone', component: ZoneComponent},
         { path: ':id', component: ZoneComponent},

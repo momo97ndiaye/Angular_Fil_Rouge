@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CatalogueService } from 'src/app/list-products/catalogue.service';
 
@@ -9,10 +9,9 @@ import { CatalogueService } from 'src/app/list-products/catalogue.service';
 })
 export class UnecommandeComponent implements OnInit {
 
-
   constructor(private catalogueService:CatalogueService) { }
+  @Input()ligne!:any
 
-  comTab: any;
   date!: string;
   searchDate!:any
   ladate: any;
@@ -20,17 +19,19 @@ export class UnecommandeComponent implements OnInit {
   annuler:any=false
 
   ngOnInit(): void {
+    console.log(this.ligne);
+    
 
-    const observable:Observable<any> = this.catalogueService.getCommandes();
+  /*   const observable:Observable<any> = this.catalogueService.getCommandes();
     observable.subscribe(data=>{
-      console.log(data);
       this.comTab = data;
-    })
+      console.log( this.comTab);
+    }) */
 
     this.date = new Date().toISOString().slice(0, 10);
   }
 
-  getDate(unedate:any){
+    getDate(unedate:any){
     this.ladate=unedate.value
     console.log(this.ladate)
   }

@@ -2,7 +2,7 @@
     <label for="date">Choisir date</label>
     <input type="date" (change)="getDate(ladate.value)" [(ngModel)]="ladate" class="form-control" id="date" max="{{date | date:'yyyy-MM-dd'}}">
 </div>    
-    <table class="table table-hover">
+    <div class="table table-hover">
     <thead>
         <tr>
             <th>#</th>
@@ -12,8 +12,7 @@
             <th>Options</th>
         </tr>
     </thead>
-    <tbody *ngFor="let com of comTab | filter:ladate;let i=index">
-<app-unecommande></app-unecommande>
-</tbody>
-</table>
-<router-outlet></router-outlet>
+    <tbody>
+        <app-unecommande *ngFor="let ligne of comTab  | filter:ladate;" [ligne]="ligne"></app-unecommande>
+    </tbody>
+</div>

@@ -1,4 +1,5 @@
-import { NgModule, Component } from '@angular/core';
+import { AdminModule } from './admin/admin.module';
+import { NgModule, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -11,7 +12,6 @@ import { ListeCommandesComponent } from './liste-commandes/liste-commandes.compo
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
-import { UnecommandeComponent } from './admin/unecommande/unecommande.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 
@@ -23,7 +23,6 @@ import { RouterModule } from '@angular/router';
     PanierComponent,
     ListeCommandesComponent,
     AdminComponent,
-    UnecommandeComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +45,9 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule
   ],
   providers: [],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

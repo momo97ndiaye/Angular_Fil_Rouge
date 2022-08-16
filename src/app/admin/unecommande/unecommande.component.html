@@ -1,17 +1,15 @@
-<tbody *ngFor="let com of comTab | filter:ladate;let i=index">
-    <tr #uneligne >
-        <th scope="row">{{i+1}}</th>
-        <td>{{com.dateCreation | date:'MMM d, y, h:mm:ss'}}</td>
-        <td>{{com.isEtat}}</td>
-        <td>{{com.client.nomComplet}}</td>
-        <td class="btn">
-            <div >
-                <button #valider class="btn btn-success m-2 valider"  *ngIf="valider==true&&annuler==false" value="true" (click)="getButton(com.id,annuler)">Valider</button>
-            </div>
-            <div >
-                <button #annuler class="btn btn-danger m-2 annuler" value="false" *ngIf="annuler==true&&valider==false" (click)="getButton1(valider,annuler)" >Annuler</button>
-            </div>
-            <button class="btn btn-primary">Détails</button>
-        </td>
-    </tr>                   
-</tbody>
+<tr>
+    <td scope="row"></td>
+    <td>{{ligne.dateCreation | date:'MMM d, y, h:mm:ss'}}</td>
+    <td>{{ligne.isEtat}}</td>
+    <td>{{ligne.client.nomComplet}}</td>
+    <td class="btn">
+        <div >
+            <button #valider class="btn btn-success m-2 valider" *ngIf="valider==true&&annuler==false"  (click)="getButton(ligne.id,annuler)">Valider</button>
+        </div>
+        <div >
+            <button #annuler class="btn btn-danger m-2 annuler" *ngIf="annuler==true&&valider==false" (click)="getButton1(valider,annuler)" >Annuler</button>
+        </div>
+        <button class="btn btn-primary">Détails</button>
+    </td>
+</tr> 

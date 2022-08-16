@@ -16,13 +16,15 @@ export class AdminComponent implements OnInit {
   ladate: any;
   valider:any=true
   annuler:any=false
+  ligne!:any
   constructor(private catalogueService:CatalogueService) { }
 
   ngOnInit(): void {
+    
     const observable:Observable<any> = this.catalogueService.getCommandes();
     observable.subscribe(data=>{
-      console.log(data);
       this.comTab = data;
+      console.log(this.comTab);
     })
 
     this.date = new Date().toISOString().slice(0, 10);
