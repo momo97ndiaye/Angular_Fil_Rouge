@@ -1,0 +1,19 @@
+.quantite{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bi{
+    margin: 10px;
+}
+.update{
+    width: 70px;
+}
+.panier{
+    width: 10vh;
+    height: 10vh;
+}
+.zone{
+    display: flex;
+    flex-direction: column;
+}

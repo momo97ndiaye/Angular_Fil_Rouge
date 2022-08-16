@@ -4,4 +4,6 @@ export interface IMenu{
      prix:number;
      image:string;
      desc:string;
+     qtyTotal:number;
+     qte: number;
 }

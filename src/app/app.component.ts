@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { PanierService } from './panier/panier.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular_TodoList';
+
+  constructor(private panierService:PanierService){}
+
+   items$?:Observable<any> = this.panierService.items$
+
 }

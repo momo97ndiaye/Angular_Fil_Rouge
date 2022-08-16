@@ -1,0 +1,84 @@
+
+<h1 clss="bg-dark">Veullez Choisir une zone</h1>
+<div class="container mt-5">
+  <div class="search-name">
+      <input class="form-control" hidden type="" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" SEARCH  ">
+  </div>
+</div>
+    <select class="form-select" #select aria-label="Default select example" (change)="getValue(select.value)">
+      <option *ngFor="let zone of tabZone;let i=index" >{{zone.nomZone}}</option>
+    </select>
+    <div class="table-responsive">
+        <table class="table">
+        <div *ngFor="let zone of tabZone|filter:searchText ;let i=index ">
+          <thead class="tab">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date Com</th>
+              <th scope="col">Zone</th>
+              <th scope="col">Client</th>
+              <th scope="col text-center">Actions</th>
+            </tr>
+          </thead>
+        <tbody  *ngFor="let com of zone.commandes;let i=index" >
+            <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{com.dateCreation| date:'MMM d, y, h:mm:ss'}}</td>
+                <td>{{zone.nomZone}}</td>
+                <td>{{com.client.nomComplet}}</td>
+                <td class="check">
+                    <input class="form-check-input" type="checkbox" value="" (input)="blocker();getCommande(com)" id="flexCheckDefault">
+                </td>
+              </tr>
+        </tbody>
+      </div>
+      </table>
+      <div class="d-flex justify-content-end" *ngIf="block==true">
+        <button class="btn btn-info m-2" (click)="showModal=true;getLivreurs()" data-toggle="modal" data-target="#myModal">Affecter Livreur</button>
+      </div>
+      </div>
+      <div *ngIf="val==true">
+        <button type="button" class="btn btn-success" (click)="showValiderLiv()">Valider Livraison</button>
+     </div>
+     
+
+
+  <div class="modal fade bd-example-modal-lg" id="myModal" [ngClass]="{'show':showModal}" >
+    <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+             <h4 class="modal-title">Choisir Livreur</h4>
+             <button type="button" class="close" (click)="showModal=false" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+      
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom Livreur</th>
+                  <th scope="col">Email</th>
+                  <th scope="col text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let liv of tabLiv;let i=index">
+                  <tr>
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{liv.nomComplet}}</td>
+                      <td>{{liv.email}}</td>
+                      <td>
+                        <input class="form-check-input" type="radio" name="livreur" (click)="getLivreur(liv);showValider()" id="flexCheckDefault">
+                      </td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer" *ngIf="b==true">
+             <button type="button" class="btn btn-info" (click)="showModal=false;showValiderLiv()" data-dismiss="modal">Valider</button>
+          </div>
+       </div>
+    </div>
+ </div>

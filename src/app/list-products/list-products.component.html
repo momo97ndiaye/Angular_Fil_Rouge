@@ -22,12 +22,18 @@
         </header>
         <!-- Section-->
 
+     <div class="container mt-5">
+        <div class="search-name">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" SEARCH  ">
+        </div>
+     </div>
+
         <section class="py-5 d-flex flex-wrap col-md-12">
             <div class="menus col-md-12 bg-dark">Burgers</div>
-                    <div class="container col-md-4 mb-2 " *ngFor="let burger of burgers">
+                    <div class="container col-md-4 mb-2 " *ngFor="let burger of burgers|filter:searchText">
                         <div class="card h-100 col-md-12">
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{burger.image}}" alt="..." />
+                            <img class="card-img-top" [src]="transformAll(burger.image)" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -43,7 +49,7 @@
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',burger.id]">Voir détails</a></div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="checkItem(burger)">Ajouter au panier</a></div>
                             </div>
                            </div>
                     </div>
@@ -52,10 +58,10 @@
 
         <section class="py-5 d-flex flex-wrap col-md-12">
             <div class="menus col-md-12 bg-dark">Menus</div>
-                    <div class="container col-md-4 mb-2 " *ngFor="let menu of menus">
+                    <div class="container col-md-4 mb-2 " *ngFor="let menu of menus|filter:searchText">
                         <div class="card h-100 col-md-12">
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{menu.image}}" alt="..." />
+                            <img class="card-img-top" [src]="transformAll(menu.image)" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -68,10 +74,7 @@
                             <!-- Product actions-->
                            <div class="card-foot d-flex flex-fill">
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',menu.id]">Voir détails</a></div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',menu.id]" (click)="onSelectProduct(menu)">Voir détails</a></div>
                             </div>
                            </div>
                     </div>

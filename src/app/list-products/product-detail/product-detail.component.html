@@ -1,1 +1,109 @@
-<p>product-detail works!</p>
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <img class="card-img-top mb-5 mb-md-0" [src]="transformAll(product.image)" alt="..." />
+                    </div>
+                    <div class="col-md-6">
+                        <img class="card-img-top mb-5 mb-md-0 frite" [src]="transformAll(ObjFrite.image)" alt="..." />
+                    </div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">{{product.nom}}</h1>
+                        <div class="fs-5 mb-5">
+                            <span>{{product.prix}} FCFA</span> [(ngModel)]="ladate"
+                        </div>
+                        <p class="lead">La disponibilité des articles varie selon l'emplacement.
+
+                            Les calories varieront en fonction des modifications apportées à l'article. La disponibilité des produits, les prix, les offres et les remises peuvent varier d'un restaurant à l'autre. Les coupons imprimés BK ne sont pas valables sur les commandes en ligne.
+                            
+                            
+                            </p>
+                            
+                    </div>
+                    <div class="col-md-6">
+                        <img class="card-img-top mb-5 mb-md-0 frite" [src]="transformAll(b.image)" alt="..." />
+                    </div>
+                   
+                  
+                    <div class="conatiner col-md-12 mb-5 bg-dark d-flex justify-content-center">
+                        <h2 class="col-md-12 text-light"> Veuillez choisir {{quantiteBoissons}} boissons</h2>
+                    </div>
+                    <div class="container-fluid input-groups">
+                        <div class="container " *ngFor="let taille of tailleBoissons">
+                        <span>{{taille.boisson?.nom}}</span>
+                        <div class="col-md-10 input-boisson">
+                            <button class="btn btn-link px-2" *ngIf="boisson.valueAsNumber>0" (click)="quantityMoins(boisson)" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                <i class="bi bi-dash-circle"></i> 
+                              </button>
+                              <input type="number" min="0" value="0" class="form-control text-center col-md-8" #boisson readonly>
+                               <button class="btn btn-link px-2" (click)="quantityPlus(boisson)" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                <i class="bi bi-plus-square  "></i> 
+                              </button>
+                        </div>
+                    </div>
+                 </div>
+
+                    <hr>
+                    <div class="d-flex justify-content-center col-md-12" *ngIf="cpt==quantiteBoissons" (click)="checkItem(product)">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <i class="bi-cart-fill me-1 " ></i>
+                            Ajouter au Panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related items section-->
+
+
+        <section class="py-5 d-flex flex-wrap col-md-12">
+            <div class="menus col-md-12 bg-dark">Burgers</div>
+                  <div class="container col-md-4 mb-2 " *ngFor="let frite of tabFrites">
+                        <div class="card h-100 col-md-12">
+                            <!-- Product image-->
+                            <img class="card-img-top" [src]="transformAll(frite.image)" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{frite.nom}}</h5>
+                                    <!-- Product price-->
+                                    FCFA {{frite.prix}}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                           <div class="card-foot d-flex flex-fill">
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',frite.id]">Voir détails</a></div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="checkItem(frite)">Ajouter au panier</a></div>
+                            </div>
+                           </div>
+                    </div>
+                  </div>
+                  <div class="container col-md-4 mb-2 " *ngFor="let boissonF of tabBoissons">
+                    <div class="card h-100 col-md-12">
+                        <!-- Product image-->
+                        <img class="card-img-top" [src]="transformAll(boissonF.boisson.image)" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{boissonF.boisson.nom}}</h5>
+                                <!-- Product price-->
+                                 {{boissonF.boisson.prix}}FCFA
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                       <div class="card-foot d-flex flex-fill">
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/products',boissonF.boisson.id]">Voir détails</a></div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="checkItem(boissonF.boisson)">Ajouter au panier</a></div>
+                        </div>
+                       </div>
+                </div>
+              </div>
+        </section>

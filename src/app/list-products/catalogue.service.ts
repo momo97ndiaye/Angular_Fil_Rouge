@@ -1,125 +1,103 @@
-import { IProduit } from './Produit';
-import { IMenu } from './Menu';
-import { IBurger } from './Burger';
+import {  IProduit, IFrite } from './Produit';
+import { Catalogue } from './Produit';
+import  { HttpClient} from '@angular/common/http';
+
 import { Injectable} from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogueService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  url = "http://127.0.0.1:8000/api/catalogues";
+  url2 = "http://127.0.0.1:8000/api/produits";
+  urlfrite = "http://127.0.0.1:8000/api/frites";
+  urlboisson = "http://127.0.0.1:8000/api/boissons";
+ urlComClient="http://127.0.0.1:8000/api/clients/48/commandes"
+ urlCommmandes="http://127.0.0.1:8000/api/commandes"
+ urlComplement="http://127.0.0.1:8000/api/complements"
+ urlZoneCommandes="http://127.0.0.1:8000/api/zones/2/commandes"
+
+
+  getCatalogueObs():Observable<Catalogue>{
+    return this.http.get<Catalogue>(this.url);
+  }
+
+  getComplementObs():Observable<any>{
+    return this.http.get<any>(this.urlComplement);
+  }
+
+  getProductsObs():Observable<IProduit[]>{
+    return this.http.get<IProduit[]>(this.url2);
+  }
+
+  getFrites():Observable<IFrite[]>{
+    return this.http.get<IFrite[]>(this.urlfrite);
+  }
+
+  getBoissons():Observable<any[]>{
+    return this.http.get<any[]>(this.urlboisson);
+  }
+
+  getCommandesClient():Observable<any[]>{
+    return this.http.get<any[]>(this.urlComClient);
+  }
+
+  getCommandes():Observable<any[]>{
+    return this.http.get<any[]>(this.urlCommmandes);
+  }
+
+  getZoneCommandes(id:any):Observable<any[]>{
+    return this.http.get<any[]>('http://127.0.0.1:8000/api/zones/'+id+'/commandes');
+  }
+
+getOnProducts(id:string,products:IProduit[]):IProduit{
+  const product= products.find((product)=>{
+    return product.id.toString() === id;
+  })
+  if (!product) {
+    throw new Error(`Could not find product`);
+  }else{
+    return product
+  }
+}
+
+getOnFrites(id:string,products:IProduit[]):IProduit{
+  const product= products.find((product)=>{
+    return product.id.toString() === id;
+  })
+  if (!product) {
+    throw new Error(`Could not find product`);
+  }else{
+    return product
+  }
+} 
+
+getOnBoissons(id:string,products:any[]):any{
+  const product= products.find((product)=>{
+    return product.id.toString() === id;
+  })
+  if (!product) {
+    throw new Error(`Could not find product`);
+  }else{
+    return product
+  }
+} 
+
+getOnCommandeClient(){
+  
+}
+
+updateResponse( input: number): Observable<any> {
+  return this.http.patch<any>(`http://127.0.0.1:8000/api/commandes/${input}`,
+  { 
+    "isEtat": true
+  });
 
   
+}
 
-
-    private burger:Observable<IBurger>=from([
-      {
-        id:1,
-        nom:'Burger simple',
-        prix:2000,
-        image:'https://img.freepik.com/photos-premium/burger-boeuf-frites_1339-20847.jpg?w=740',
-        desc:'rgf'
-      },
-      {
-        id:2,
-        nom:'Burger Chicken',
-        prix:7000,
-        image:'https://img.freepik.com/photos-premium/delicieux-hamburgers-grilles_62847-16.jpg?w=740',
-        desc:'rgf'
-      },
-      {
-        id:3,
-       nom:'Burger Double',
-       prix:3000,
-       image:'https://img.freepik.com/photos-gratuite/gros-cheeseburger-frites_140725-2256.jpg?w=740',
-       desc:'rgf'
-      },
-      {
-      id:4,
-      nom:'Burger Cheese',
-      prix:5000,
-      image:'https://img.freepik.com/photos-premium/burger-boeuf-fait-maison-delicieux-fast-food-fermer_151349-156.jpg?w=740',
-      desc:'rgf'
-
-      },
-      {
-      id:5,
-      nom:'Burger Double Steak',
-      prix:6000,
-      image:'https://img.freepik.com/photos-gratuite/hamburger-maison-burger-legumes-frais-laitue-au-fromage-mayonnaise-servi-frites-morceaux-papier-brun-table-pierre-noire-concept-restauration-rapide-malbouffe_1150-41842.jpg?t=st=1658580689~exp=1658581289~hmac=ac61496845f0ef3bd83ae89662b3e05b7894ab5e12cfe6b38a0b7f9f0dd2f7d5&w=740',
-      desc:'rgf'
-
-      },
-      {
-      id:6,
-      nom:'Burger Chicken',
-      prix:7000,
-      image:'https://img.freepik.com/photos-premium/delicieux-hamburgers-grilles_62847-16.jpg?w=740',
-      desc:'rgf'
-      }
-      ] 
-    );
-
-    private menu:Observable<IMenu>=from([
-      {
-        id:1,
-        nom:'Burger simple',
-        prix:2000,
-        image:'https://img.freepik.com/photos-premium/burger-boeuf-frites_1339-20847.jpg?w=740',
-        desc:'rgf'
-      },
-      {
-        id:2,
-        nom:'Burger Chicken',
-        prix:7000,
-        image:'https://img.freepik.com/photos-premium/delicieux-hamburgers-grilles_62847-16.jpg?w=740',
-        desc:'rgf'
-      },
-      {
-        id:3,
-       nom:'Burger Double',
-       prix:3000,
-       image:'https://img.freepik.com/photos-gratuite/gros-cheeseburger-frites_140725-2256.jpg?w=740',
-       desc:'rgf'
-      },
-      {
-      id:4,
-      nom:'Burger Cheese',
-      prix:5000,
-      image:'https://img.freepik.com/photos-premium/burger-boeuf-fait-maison-delicieux-fast-food-fermer_151349-156.jpg?w=740',
-      desc:'rgf'
-
-      },
-      {
-      id:5,
-      nom:'Burger Double Steak',
-      prix:6000,
-      image:'https://img.freepik.com/photos-gratuite/hamburger-maison-burger-legumes-frais-laitue-au-fromage-mayonnaise-servi-frites-morceaux-papier-brun-table-pierre-noire-concept-restauration-rapide-malbouffe_1150-41842.jpg?t=st=1658580689~exp=1658581289~hmac=ac61496845f0ef3bd83ae89662b3e05b7894ab5e12cfe6b38a0b7f9f0dd2f7d5&w=740',
-      desc:'rgf'
-
-      },
-      {
-      id:6,
-      nom:'Burger Chicken',
-      prix:7000,
-      image:'https://img.freepik.com/photos-premium/delicieux-hamburgers-grilles_62847-16.jpg?w=740',
-      desc:'rgf'
-      }
-      ] 
-    );
-
-    private catalogue:Observable<IProduit>=from([
-
-    ]);   
-    getBurger():Observable<IBurger>{
-      return this.burger
-    }
-    getMenu():Observable<IMenu>{
-      return this.menu
-    }
-    getCatalogue():Observable<IProduit>{
-      return this.catalogue
-    }
 }

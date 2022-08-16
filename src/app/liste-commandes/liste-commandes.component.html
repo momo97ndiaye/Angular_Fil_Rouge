@@ -1,0 +1,68 @@
+
+<table class="table">
+    <thead class=" thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date de Creation</th>
+        <th scope="col">Prix Total</th>
+        <th scope="col">Etat Commande</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider" *ngFor="let client of comClientTab;let i=index">
+        <tr *ngIf="client.isEtat==false">
+          <th scope="row">{{i+1}}</th>
+          <td>{{client.dateCreation}}</td>
+          <td>{{client.prixTotal}}</td>
+          <td *ngIf="client.isEtat==false">En cours</td>
+          <td *ngIf="client.isEtat==true">Annulée</td>
+          <td>
+            <button class="btn btn-info m-2" (click)="showModal=true" data-toggle="modal" data-target="#myModal" (click)="getProd(client)">Détails</button>
+            <button class="btn btn-danger" (click)="getStatus(client);cancelOrder()" [routerLink]="['/commandes']">Annuler</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  
+
+     <!-- The Modal -->
+     <div class="modal fade bd-example-modal-lg" id="myModal" [ngClass]="{'show':showModal}" >
+        <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                 <h4 class="modal-title">Commande numero</h4>
+                 <button type="button" class="close" (click)="showModal=false" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                 <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Produit</th>
+                      <th scope="col">Quantite</th>
+                      <th scope="col">Prix Unitaire</th>
+                      <th scope="col">Prix Total</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let details of tabDetails;let i=index">
+                    <tr>
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{details.produit.nom}}</td>
+                      <td>{{details.quantite}}</td>
+                      <td>{{details.produit.prix}} FCFA</td>
+                      <td>{{details.produit.prix*details.quantite}} FCFA</td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-danger" (click)="showModal=false" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+        </div>
+     </div>
+

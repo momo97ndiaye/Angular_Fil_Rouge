@@ -1,0 +1,8 @@
+.frite{
+    width: 30vh;
+    height:30vh;
+}
+.input-boisson, .input-groups{
+    display: flex;
+    flex-direction: row;
+}
