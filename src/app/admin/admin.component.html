@@ -1,18 +1,30 @@
-<div class="container  date col-md-12 date">
-    <label for="date">Choisir date</label>
-    <input type="date" (change)="getDate(ladate.value)" [(ngModel)]="ladate" class="form-control" id="date" max="{{date | date:'yyyy-MM-dd'}}">
-</div>    
-    <div class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Date de Commande</th>
-            <th>Etat</th>
-            <th>Client</th>
-            <th>Options</th>
-        </tr>
-    </thead>
-    <tbody>
-        <app-unecommande *ngFor="let ligne of comTab  | filter:ladate;" [ligne]="ligne"></app-unecommande>
-    </tbody>
+<div class="container date col-md-12 date">
+  <label for="date">Choisir date</label>
+  <input
+    type="date"
+    (change)="getDate(ladate.value)"
+    [(ngModel)]="ladate"
+    class="form-control"
+    id="date"
+    max="{{ date | date: 'yyyy-MM-dd' }}"
+  />
+</div>
+<div class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Date de Commande</th>
+      <th>Etat</th>
+      <th>Client</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody class="body" >
+    <tr>
+        <app-unecommande
+        *ngFor="let ligne of comTab | filter: ladate"
+        [ligne]="ligne"
+        ></app-unecommande>
+    </tr>
+  </tbody>
 </div>

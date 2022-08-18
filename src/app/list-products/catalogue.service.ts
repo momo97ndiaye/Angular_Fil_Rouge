@@ -53,6 +53,9 @@ export class CatalogueService {
   getZoneCommandes(id:any):Observable<any[]>{
     return this.http.get<any[]>('http://127.0.0.1:8000/api/zones/'+id+'/commandes');
   }
+  getLivraisons():Observable<any[]>{
+    return this.http.get<any[]>('http://127.0.0.1:8000/api/livraisons');
+  }
 
 getOnProducts(id:string,products:IProduit[]):IProduit{
   const product= products.find((product)=>{

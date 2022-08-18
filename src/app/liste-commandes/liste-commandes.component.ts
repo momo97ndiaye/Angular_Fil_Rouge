@@ -44,7 +44,8 @@ export class ListeCommandesComponent implements OnInit {
     }).subscribe(data => {
        this.postId = data.id;
      })
-     console.log(this.http)
+
+     setTimeout(function () { location.reload(); }, 5000);
   }
 
 

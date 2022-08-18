@@ -98,3 +98,12 @@ export interface Details {
 	produit: IProd;
 	quantite: number;
 }
+
+export interface Commande{
+	id:number,
+	isEtat:boolean,
+	prixTotal:number
+	client:any,
+	Produits:IProd,
+	dateCreation:Date
+}

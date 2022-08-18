@@ -10,7 +10,7 @@ import { CatalogueService } from '../list-products/catalogue.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  comTab: any;
+  comTab!: any;
   date!: string;
   searchDate!:any
   ladate: any;
@@ -35,16 +35,6 @@ export class AdminComponent implements OnInit {
     console.log(this.ladate)
   }
 
-  getButton(valider:any,annuler:any){
-    console.log(valider)
-    this.valider=false
-    this.annuler=true
-  }
 
-  getButton1(valider:any,annuler:any){
-    this.valider=true
-    this.annuler=false
-    console.log(valider)
-  }
  
 }

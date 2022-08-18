@@ -1,15 +1,15 @@
-<tr>
+
+<tr class="uneligne" *ngIf="ligne.isEtat==false">
     <td scope="row"></td>
     <td>{{ligne.dateCreation | date:'MMM d, y, h:mm:ss'}}</td>
     <td>{{ligne.isEtat}}</td>
     <td>{{ligne.client.nomComplet}}</td>
     <td class="btn">
-        <div >
-            <button #valider class="btn btn-success m-2 valider" *ngIf="valider==true&&annuler==false"  (click)="getButton(ligne.id,annuler)">Valider</button>
-        </div>
-        <div >
-            <button #annuler class="btn btn-danger m-2 annuler" *ngIf="annuler==true&&valider==false" (click)="getButton1(valider,annuler)" >Annuler</button>
-        </div>
-        <button class="btn btn-primary">Détails</button>
+            <button #valider class="btn btn-success m-2 valider" *ngIf="valider==true&&annuler==false"  (click)="getButton(ligne.id,annuler);">Valider</button>
+      
+            <button #annuler class="btn btn-danger m-2 annuler" *ngIf="annuler==true&&valider==false" (click)="getButton1(valider,annuler);getStatus(ligne.id)">Annuler</button>
+        
+        <button class="btn btn-primary m-2">Détails</button>
     </td>
 </tr> 
+

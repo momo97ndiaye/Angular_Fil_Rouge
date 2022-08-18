@@ -1,0 +1,8 @@
+.uneligne{
+    display: flex;
+
+}
+.btn{
+    display: flex;
+    justify-content: row;
+}

@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody class="table-group-divider" *ngFor="let client of comClientTab;let i=index">
-        <tr *ngIf="client.isEtat==false">
+        <tr *ngIf="client.isEtat==false&&client.myEtat=='ec'">
           <th scope="row">{{i+1}}</th>
           <td>{{client.dateCreation}}</td>
           <td>{{client.prixTotal}}</td>
@@ -18,7 +18,7 @@
           <td *ngIf="client.isEtat==true">Annulée</td>
           <td>
             <button class="btn btn-info m-2" (click)="showModal=true" data-toggle="modal" data-target="#myModal" (click)="getProd(client)">Détails</button>
-            <button class="btn btn-danger" (click)="getStatus(client);cancelOrder()" [routerLink]="['/commandes']">Annuler</button>
+            <button class="btn btn-danger" (click)="getStatus(client);cancelOrder()">Annuler</button>
           </td>
         </tr>
       </tbody>

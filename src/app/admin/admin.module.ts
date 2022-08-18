@@ -12,7 +12,9 @@ import { MenuComponent } from './produits/menu/menu.component';
 import { LivreurComponent } from './livraisons/livreur/livreur.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RowComponent } from './unecommande/row/row.component';
-
+import { ListelivraisonsComponent } from './livraisons/listelivraisons/listelivraisons.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,19 @@ import { RowComponent } from './unecommande/row/row.component';
     LivraisonsComponent,
     RowComponent,
     UnecommandeComponent,
+    ListelivraisonsComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    NgModule
+  ],
+  exports: [
+    UnecommandeComponent,
   ]
 })
 export class AdminModule { }

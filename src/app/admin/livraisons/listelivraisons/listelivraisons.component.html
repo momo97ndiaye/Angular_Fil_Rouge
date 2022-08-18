@@ -1,0 +1,21 @@
+<h1 class="text-light bg-dark text-center">Gestion des Livraisons</h1>
+<div class="table-responsive">
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom Livreur</th>
+        <th scope="col">Zone</th>
+        <th scope="col">Commandes</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let liv of tabLivraisons;let i=index">
+      <tr>
+        <th scope="row">{{i+1}}</th>
+        <td>{{liv.livreur.nomComplet}}</td>
+        <td>{{liv.zone.nomZone}}</td>
+        <td><button class="btn btn-primary">Voir commandes</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

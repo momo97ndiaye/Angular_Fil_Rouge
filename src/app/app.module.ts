@@ -1,19 +1,19 @@
 import { AdminModule } from './admin/admin.module';
-import { NgModule, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { ProductDetailComponent } from './list-products/product-detail/product-detail.component';
 import { PanierComponent } from './panier/panier.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { ListeCommandesComponent } from './liste-commandes/liste-commandes.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,10 +28,12 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     BrowserModule,
-    ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     Ng2SearchPipeModule,
+    ReactiveFormsModule,
+    NgModule,
+    AdminModule,
     RouterModule.forRoot([
     { path:'catalogue',component:ListProductsComponent},
     { path:'panier',component:PanierComponent},

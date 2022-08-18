@@ -14,6 +14,8 @@ export class MenuComponent implements OnInit {
 
   produit:IProd =new Prod()
 
+  Image!:File
+
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -34,5 +36,21 @@ export class MenuComponent implements OnInit {
       }).subscribe(data => {
       this.postId = data.id;
   })
+  }
+
+  selectedImage(event:any){
+    this.Image=<File>event.target.files[0]
+    console.log(this.Image)
+  }
+
+  uploadImage(){
+    const fd = new FormData()
+    fd.append('image',this.Image,this.Image.name)
+    this.http.post<any>('http://127.0.0.1:8000/api/produits',fd,{
+      reportProgress: true,
+      observe:'events'
+    }) .subscribe(event=>{
+      console.log(event)
+    })
   }
 }

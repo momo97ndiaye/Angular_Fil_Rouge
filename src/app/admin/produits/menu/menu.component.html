@@ -1,5 +1,5 @@
 <h1 class="text-center bg-dark text-light rounded-top">Ajouter un produit</h1>
-<form (ngSubmit)="getProduct(registerForm)"  #registerForm="ngForm">
+<form  [formGroup]="myForm"  (ngSubmit)="uploadImage()">
     <div>
         <div class="col-md-6">
             <label for="produit">Type du produit</label>
@@ -11,20 +11,20 @@
             </select>
         </div>
          
-        <div class="col-md-5">
-            <label for="formFile" class="form-label mt-2">Nom Produit</label>
-            <input class="form-control" name="nom" [(ngModel)]="produit.nom" type="text" placeholder="Saisir le nom du produit" aria-label="default input example">
+        <div class="col-md-5 form-group">
+            <label for="nom" class="form-label mt-2">Nom Produit</label>
+            <input class="form-control" id="nom" formControlName="nom" type="text" placeholder="Saisir le nom du produit" aria-label="default input example">
         </div>
-        <div class="col-md-5">
-            <label for="formFile" class="form-label mt-2">Prix Produit</label>
-            <input class="form-control" name="prix" [(ngModel)]="produit.prix" type="number" min="500" placeholder="Saisir le prix du produit" aria-label="default input example">
+        <div class="col-md-5 form-group">
+            <label for="prix" class="form-label mt-2">Prix Produit</label>
+            <input class="form-control" id="prix" formControlName="prix" type="number" min="500" placeholder="Saisir le prix du produit" aria-label="default input example">
         </div>
-        <div class="mt-3 col-md-5">
-            <label for="formFile" class="form-label">Choisir image produit</label>
-            <input class="form-control" name="image" [(ngModel)]="produit.image" type="file" id="formFile">
+        <div class="mt-3 col-md-5 form-group">
+            <label for="image" class="form-label">Choisir image produit</label>
+            <input class="form-control" id="image" formControlName="image" type="file" (change)="selectedImage($event)">
         </div>
         <div class="d-flex justify-content-end mt-3" *ngIf="produit.image!=null&&produit.nom!=null&&produit.prix!=null">
-            <button class="btn btn-outline-primary">Ajouter Produit</button>
+            <button class="btn btn-outline-primary" (click)="uploadImage()">Ajouter Produit</button>
         </div>
     </div>
 </form>
